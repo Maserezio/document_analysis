@@ -29,12 +29,12 @@ def evaluate(gt_imgs, pr_imgs, print_results=True):
     if(print_results == True):
         data = [
             ["Metric", "Processed Images"],
-            ["Accuracy (%)", "{:.2f}".format(mean_values_single['accuracy'])],
-            ["F-measure", "{:.2f}".format(mean_values_single['fm'])],
-            ["Matthews Correlation Coefficient", "{:.2f}".format(mean_values_single['mcc'])],
-            ["Peak Signal-to-Noise Ratio (PSNR)", "{:.2f}".format(mean_values_single['psnr'])],
-            ["Normalized Root Mean Square Error (NRM)", "{:.2f}".format(mean_values_single['nrm'])],
-            ["Distance-based Performance Measure (DRDM)", "{:.2f}".format(mean_values_single['drdm'])],
+            ["Accuracy (%)", "{:.2f}".format(mean_values_single['Accuracy (%)'])],
+            ["F-measure", "{:.2f}".format(mean_values_single['F-measure'])],
+            ["Matthews Correlation Coefficient", "{:.2f}".format(mean_values_single['Matthews Correlation Coefficient'])],
+            ["Peak Signal-to-Noise Ratio (PSNR)", "{:.2f}".format(mean_values_single['Peak Signal-to-Noise Ratio (PSNR)'])],
+            ["Normalized Root Mean Square Error (NRM)", "{:.2f}".format(mean_values_single['Normalized Root Mean Square Error (NRM)'])],
+            ["Distance-based Performance Measure (DRDM)", "{:.2f}".format(mean_values_single['Distance-based Performance Measure (DRDM)'])],
         ]
 
         print(tabulate(data, headers="firstrow", tablefmt="grid"))
