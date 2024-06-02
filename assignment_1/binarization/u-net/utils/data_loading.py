@@ -70,14 +70,24 @@ class BasicDataset(Dataset):
         assert newW > 0 and newH > 0, 'Scale is too small, resized images would have no pixel'
         pil_img = pil_img.resize((newW, newH), resample=Image.NEAREST if is_mask else Image.BICUBIC)
 
-        if augment and not is_mask:
-            transform_ops = transforms.Compose([
-                transforms.RandomHorizontalFlip(),
-                transforms.RandomVerticalFlip(),
-                transforms.RandomRotation(10),
-                transforms.ColorJitter(brightness=0.1, contrast=0.1)
-            ])
-            pil_img = transform_ops(pil_img)
+        # if augment and not is_mask:
+        if augment:
+            if not is_mask:
+                transform_ops = transforms.Compose([
+                    transforms.RandomHorizontalFlip(),
+                    transforms.RandomVerticalFlip(),
+                    transforms.RandomRotation(10),
+                    transforms.ColorJitter(brightness=0.1, contrast=0.1)
+                    # transforms.ColorJitter(brightness=0.25, contrast=0.25, saturation=0.25, hue=0.25)
+                ])
+            # else:
+            #     transform_ops = transforms.Compose([
+            #         transforms.RandomHorizontalFlip(),
+            #         transforms.RandomVerticalFlip(),
+            #         transforms.RandomRotation(10)
+            #     ])
+                pil_img = transform_ops(pil_img)
+            # pil_img = transform_ops(pil_img)
         img = np.asarray(pil_img)
 
         if is_mask:
