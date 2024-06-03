@@ -58,7 +58,7 @@ def evaluate(gt_path, et_path, print_results=True):
 def plot_error_rates(word_error_rate, char_error_rate):
     fig, axs = plt.subplots(2, figsize=(15, 6))
 
-    index = np.arange(len(word_error_rate))
+    index = np.arange(len(word_error_rate)) + 1
     bar_width = 0.35
     opacity = 0.8
     axs[0].bar(index, word_error_rate, bar_width, alpha=opacity, color='blue', label='Word Error Rate')
@@ -69,12 +69,12 @@ def plot_error_rates(word_error_rate, char_error_rate):
     axs[0].set_xticks(index + bar_width / 2)
     axs[0].set_xticklabels([str(i) for i in index])
     axs[0].legend(loc='upper left')
-    axs[0].set_xlim(-0.5, len(word_error_rate) - 0.25)
+    axs[0].set_xlim(0.5, len(word_error_rate) + 0.75)
 
     norm_word_error_rate = np.array(word_error_rate) / np.linalg.norm(word_error_rate)
     norm_char_error_rate = np.array(char_error_rate) / np.linalg.norm(char_error_rate)
 
-    index = np.arange(len(norm_word_error_rate))
+    index = np.arange(len(norm_word_error_rate)) + 1
     axs[1].bar(index, norm_word_error_rate, bar_width, alpha=opacity, color='blue', label='Word Error Rate')
     axs[1].bar(index + bar_width, norm_char_error_rate, bar_width, alpha=opacity, color='red', label='Character Error Rate')
     axs[1].set_title('Normalized Error Rates')
@@ -83,8 +83,8 @@ def plot_error_rates(word_error_rate, char_error_rate):
     axs[1].set_xticks(index + bar_width / 2)
     axs[1].set_xticklabels([str(i) for i in index])
     axs[1].legend(loc='upper left')
-    axs[1].set_xlim(-0.5, len(word_error_rate) - 0.25)
-    
+    axs[1].set_xlim(0.5, len(norm_word_error_rate) + 0.75)
+
     plt.tight_layout() 
     plt.show()
 
